@@ -1,0 +1,44 @@
+<form #myForm="ngForm" (ngSubmit)="myForm.valid && onSubmit()">
+    <fieldset>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" [(ngModel)]="model.email" #email="ngModel" required email>
+    </fieldset>
+
+    <div *ngIf="email.errors && myForm.submitted">
+        <span *ngIf="email.errors?.['required']">L'adresse email est requise</span>
+        <span *ngIf="email.errors?.['email']">L'email est invalide</span>
+    </div>
+
+    <fieldset>
+        <label for="firsname">Firstname</label>
+        <input type="text" id="firsname" name="firsname" [(ngModel)]="model.firsname" #firstname="ngModel" required minlength="3" maxlength="15">
+    </fieldset>
+
+    <div *ngIf="firstname.errors && myForm.submitted">
+        <span *ngIf="firstname.errors?.['required']">Le titre est requis</span>
+        <span *ngIf="firstname.errors?.['minlength']">Le prénom doit comporter au moins 3 caractères</span>
+        <span *ngIf="firstname.errors?.['maxlength']">Le prénom ne doit pas dépasser 30 caractères</span>
+    </div>
+
+    <fieldset>
+        <label for="lastname">Lastname</label>
+        <input type="text" id="lastname" name="lastname" [(ngModel)]="model.lastname" #lastname="ngModel" required minlength="3" maxlength="15">
+    </fieldset>
+
+    <div *ngIf="lastname.errors && myForm.submitted">
+        <span *ngIf="lastname.errors?.['required']">Le titre est requis</span>
+        <span *ngIf="lastname.errors?.['minlength']">Le nom doit comporter au moins 3 caractères</span>
+        <span *ngIf="lastname.errors?.['maxlength']">Le nom ne doit pas dépasser 30 caractères</span>
+    </div>
+
+    <fieldset>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" [(ngModel)]="model.password" #password="ngModel" required>
+    </fieldset>
+
+    <div *ngIf="password.errors && myForm.submitted">
+        <span *ngIf="password.errors?.['required']">Le mot de passe est requis</span>
+    </div>
+
+    <button type="submit">Sauvegarde</button>
+</form>
